@@ -1,0 +1,284 @@
+{
+  "name": "hrnx-vscode",
+  "displayName": "HRNX: AI-Native Harness Engineering",
+  "description": "Visual knowledge engineering, dual-pane transpiler, interactive blast-radius DAG, and drift governance for AI coding-agent harnesses.",
+  "version": "0.1.0",
+  "publisher": "hrnx",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Linters",
+    "Other"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "hrnx-sidebar",
+          "title": "HRNX Harness",
+          "icon": "media/icons/hrnx-activitybar.svg"
+        }
+      ]
+    },
+    "views": {
+      "hrnx-sidebar": [
+        {
+          "id": "hrnx.navigator",
+          "name": "Harness Explorer",
+          "contextualTitle": "HRNX Explorer"
+        },
+        {
+          "id": "hrnx.drift",
+          "name": "Agent Drift & Governance",
+          "contextualTitle": "Agent Drift"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "hrnx.openBlastRadius",
+        "title": "HRNX: Open Blast Radius Canvas",
+        "category": "HRNX",
+        "icon": "$(type-hierarchy)"
+      },
+      {
+        "command": "hrnx.openPreview",
+        "title": "HRNX: Open Live Transpiler Preview",
+        "category": "HRNX",
+        "icon": "$(split-horizontal)"
+      },
+      {
+        "command": "hrnx.openNativeDiff",
+        "title": "HRNX: Open Native VS Code Diff",
+        "category": "HRNX",
+        "icon": "$(diff)"
+      },
+      {
+        "command": "hrnx.reconcileDrift",
+        "title": "HRNX: Reconcile / Overwrite Drifted Agent Files",
+        "category": "HRNX",
+        "icon": "$(sync)"
+      },
+      {
+        "command": "hrnx.reconcileTarget",
+        "title": "HRNX: Reconcile Selected Target",
+        "category": "HRNX"
+      },
+      {
+        "command": "hrnx.refreshViews",
+        "title": "HRNX: Refresh Explorer & Graph",
+        "category": "HRNX",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "hrnx.runAllEvals",
+        "title": "HRNX: Run Impacted Evaluations",
+        "category": "HRNX",
+        "icon": "$(play)"
+      },
+      {
+        "command": "hrnx.openConformanceMatrix",
+        "title": "HRNX: Open Cross-Agent Conformance Matrix",
+        "category": "HRNX",
+        "icon": "$(shield)"
+      },
+      {
+        "command": "hrnx.createDirective",
+        "title": "HRNX: Create New Directive",
+        "category": "HRNX",
+        "icon": "$(add)"
+      },
+      {
+        "command": "hrnx.createSkill",
+        "title": "HRNX: Create New Skill",
+        "category": "HRNX",
+        "icon": "$(add)"
+      },
+      {
+        "command": "hrnx.createADR",
+        "title": "HRNX: Create Architectural Decision Record (ADR)",
+        "category": "HRNX",
+        "icon": "$(add)"
+      },
+      {
+        "command": "hrnx.openSemanticMerge",
+        "title": "HRNX: Open Semantic 3-Way Merge Resolver",
+        "category": "HRNX",
+        "icon": "$(git-merge)"
+      },
+      {
+        "command": "hrnx.atomicCommit",
+        "title": "HRNX: Atomic Commit with Synced Targets",
+        "category": "HRNX",
+        "icon": "$(git-commit)"
+      },
+      {
+        "command": "hrnx.installGitHooks",
+        "title": "HRNX: Install Git Pre-Commit Hook & Merge Driver",
+        "category": "HRNX",
+        "icon": "$(tools)"
+      },
+      {
+        "command": "hrnx.collabSessionMenu",
+        "title": "HRNX: Collaboration Session Menu",
+        "category": "HRNX",
+        "icon": "$(broadcast)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "hrnx.refreshViews",
+          "when": "view == hrnx.navigator || view == hrnx.drift",
+          "group": "navigation@1"
+        },
+        {
+          "command": "hrnx.openBlastRadius",
+          "when": "view == hrnx.navigator",
+          "group": "navigation@2"
+        },
+        {
+          "command": "hrnx.openConformanceMatrix",
+          "when": "view == hrnx.navigator",
+          "group": "navigation@3"
+        },
+        {
+          "command": "hrnx.reconcileDrift",
+          "when": "view == hrnx.drift",
+          "group": "navigation@1"
+        },
+        {
+          "command": "hrnx.atomicCommit",
+          "when": "view == hrnx.drift",
+          "group": "navigation@2"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "hrnx.openBlastRadius",
+          "when": "view == hrnx.navigator && viewItem == hrnxNode",
+          "group": "inline@1"
+        },
+        {
+          "command": "hrnx.openPreview",
+          "when": "view == hrnx.navigator && viewItem == hrnxNode",
+          "group": "inline@2"
+        },
+        {
+          "command": "hrnx.openSemanticMerge",
+          "when": "view == hrnx.navigator && viewItem == hrnxNode",
+          "group": "inline@3"
+        },
+        {
+          "command": "hrnx.reconcileTarget",
+          "when": "view == hrnx.drift && viewItem == driftItem",
+          "group": "inline@1"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "hrnx.openPreview",
+          "when": "resourceExtname == .md",
+          "group": "navigation@1"
+        },
+        {
+          "command": "hrnx.openBlastRadius",
+          "when": "resourceExtname == .md",
+          "group": "navigation@2"
+        },
+        {
+          "command": "hrnx.openConformanceMatrix",
+          "when": "resourceExtname == .md",
+          "group": "navigation@3"
+        },
+        {
+          "command": "hrnx.openSemanticMerge",
+          "when": "resourceExtname == .md",
+          "group": "navigation@4"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "HRNX Harness Engineering",
+      "properties": {
+        "hrnx.eval.sandboxBackend": {
+          "type": "string",
+          "default": "local",
+          "enum": [
+            "local",
+            "docker"
+          ],
+          "description": "Sandbox isolation backend for headless agent evaluations (Stream 4)."
+        },
+        "hrnx.pythonPath": {
+          "type": "string",
+          "default": "",
+          "description": "Path to Python interpreter containing hrnx-core (defaults to workspace .venv or PATH)."
+        },
+        "hrnx.serverPath": {
+          "type": "string",
+          "default": "",
+          "description": "Custom path or module for hrnx-lsp daemon (defaults to 'python -m hrnx.server.lsp')."
+        },
+        "hrnx.defaultTargetAgent": {
+          "type": "string",
+          "default": "claude",
+          "enum": [
+            "claude",
+            "antigravity",
+            "codex",
+            "cursor",
+            "copilot",
+            "openhands",
+            "aider",
+            "cline",
+            "windsurf",
+            "goose"
+          ],
+          "description": "Default agent target for real-time live preview."
+        },
+        "hrnx.autoOpenPreview": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically open live agent preview tab when editing .hrnx nodes."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run build",
+    "compile": "tsc -b && vite build",
+    "watch": "concurrently \"tsc -w -p ./\" \"vite build --watch\"",
+    "build:extension": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node",
+    "build:webview": "vite build",
+    "build": "npm run build:extension && npm run build:webview",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/dagre": "^0.7.52",
+    "@types/node": "^20.11.24",
+    "@types/react": "^18.2.61",
+    "@types/react-dom": "^18.2.19",
+    "@types/vscode": "^1.85.0",
+    "@types/ws": "^8.18.2",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.18",
+    "esbuild": "^0.20.1",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.3.3",
+    "vite": "^5.1.4"
+  },
+  "dependencies": {
+    "dagre": "^0.8.5",
+    "lucide-react": "^0.344.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "reactflow": "^11.11.4",
+    "vscode-languageclient": "^9.0.1",
+    "ws": "^8.22.0"
+  }
+}

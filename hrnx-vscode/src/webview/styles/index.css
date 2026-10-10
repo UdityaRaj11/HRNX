@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: var(--vscode-editor-background, #1e1e1e);
+  --fg-primary: var(--vscode-editor-foreground, #d4d4d4);
+  --border-color: var(--vscode-panel-border, rgba(255, 255, 255, 0.12));
+  --sidebar-bg: var(--vscode-sideBar-background, #252526);
+  --button-bg: var(--vscode-button-background, #007acc);
+  --button-fg: var(--vscode-button-foreground, #ffffff);
+  --button-hover: var(--vscode-button-hoverBackground, #0062a3);
+  --input-bg: var(--vscode-input-background, #3c3c3c);
+  --badge-bg: var(--vscode-badge-background, #4d4d4d);
+  --badge-fg: var(--vscode-badge-foreground, #ffffff);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-primary);
+  color: var(--fg-primary);
+  font-family: var(--vscode-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif);
+  font-size: var(--vscode-font-size, 13px);
+  user-select: none;
+  overflow: hidden;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--vscode-scrollbarSlider-background, rgba(121, 121, 121, 0.4));
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--vscode-scrollbarSlider-hoverBackground, rgba(100, 100, 100, 0.7));
+}
+
+/* React Flow Canvas custom overrides */
+.react-flow__attribution {
+  display: none !important;
+}
+
+.react-flow__node {
+  cursor: pointer;
+}
+
+.react-flow__controls-button {
+  background: var(--vscode-editorWidget-background, #252526) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+  color: var(--fg-primary) !important;
+  fill: var(--fg-primary) !important;
+}
+
+.react-flow__controls-button:hover {
+  background: var(--vscode-list-hoverBackground, #2a2d2e) !important;
+}

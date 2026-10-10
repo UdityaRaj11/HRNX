@@ -1,0 +1,13 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "db_psql-executor",
+      "description": "PostgreSQL Schema Verification Executor",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  }
+]

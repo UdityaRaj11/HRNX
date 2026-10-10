@@ -1,0 +1,11 @@
+# HRNX Project Manifest
+version: "1.0"
+name: "enterprise-harness"
+description: "Canonical AI Coding Harness"
+active_targets:
+  - claude
+  - antigravity
+  - codex
+  - cursor
+  - copilot
+strict_mode: true

@@ -1,0 +1,23 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "npm",
+      "script": "build",
+      "path": "hrnx-vscode",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": ["$tsc"],
+      "label": "npm: build (hrnx-vscode)"
+    },
+    {
+      "type": "shell",
+      "command": ".\\hrnx-core\\.venv\\Scripts\\pytest",
+      "args": ["hrnx-core"],
+      "group": "test",
+      "label": "pytest: run hrnx-core tests"
+    }
+  ]
+}
